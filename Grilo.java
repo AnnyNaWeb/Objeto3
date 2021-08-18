@@ -43,4 +43,3 @@ public class Grilo {
 		Main.times[timeN].ganhadorT = true;
 }
 }
-
