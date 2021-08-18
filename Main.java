@@ -1,12 +1,10 @@
 import java.util.Scanner;
-
 public class Main { 
 	static int QtGrilos = 0;
-    static int Times = 0;
+    static int grupos = 0;
 	static int grilosnotime = 3;
-	
-
-	        
+	public static Time[] times;
+	 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 	    System.out.println("Quantos participantes a corrida vai ter? ");
@@ -17,24 +15,24 @@ public class Main {
 		
 		CtlThread threads[] = null;
         Grilo[] grilos = new Grilo[QtGrilos];
-        Time[] times = new Time[Times];
+        
         
         if(QtGrilos % grilosnotime == 0) {
-        	Times = (int)(QtGrilos / grilosnotime);
+        	grupos = (int)(QtGrilos / grilosnotime);
         }
         else {
-        	Times = (int) Math.ceil(QtGrilos / grilosnotime); 
+        	grupos = (int) Math.ceil(QtGrilos / grilosnotime + 1); 
         }
+        times = new Time[grupos]; 
         
         for ( int i = 0; i < QtGrilos; i++) {
-            grilos[i] = new Grilo("Grilo_" + (i+1), i % Times );
+            grilos[i] = new Grilo("Grilo_" + (i+1), i % grupos );
         }
-        for(int i = 0; i < Times; i++) {
+        for(int i = 0; i < grupos; i++) {
         	
             times[i] = new Time(i);
             }
-        
-        Corrida.Inicio(QtGrilos, Times, threads, grilos, times);
+        Corrida.Inicio(QtGrilos, grupos, threads, grilos, times);
     }
 		}
 

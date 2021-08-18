@@ -33,11 +33,20 @@ public class Corrida {
         Corre(QtGrilos,Times, thread, grilo, times);
 			
 		}
+        for(int i = 0; i < Main.grupos; i++) 
+		{
+			times[i].Final();
+		}
+		for(int i = 0; i < Main.grupos; i++) 
+		{
+			times[i].GanhadorF();
+			
+		}
+        
     }
 
     public static void Corre(int QtGrilos,int Times, CtlThread[] thread, Grilo[] grilo, Time[] times) {
         for(int i = 0; i < QtGrilos; i++)
-        for(int n = 0; n < Times; n++)
         {
             if(grilo[i].acabou != true)
             {
@@ -47,16 +56,18 @@ public class Corrida {
                 System.out.println("O " + grilo[i].nome +" Chegou em " + grilo[i].pulinhos + " pulos") ;
                 if(grilo[i].atposicao >= Pista)
                 {
-                	System.out.println("O " + grilo[i].nome + " é o " + Colocacao + " colocado");
+                	if (Colocacao == 1) {
+                	grilo[i].top = true;
+                	grilo[i].Ganhar();
+                	
+                	System.out.println("O " + grilo[i].nome + " é o " + Colocacao + "º colocado");
                 	Colocacao +=1;
-                	
                 }
-                
-                if(times[n].ganhadorT != true)
-                { 
-                	
+                	else {   
+                		System.out.println("O " + grilo[i].nome + " é o " + Colocacao + "º colocado");
+                    	Colocacao +=1;
+                	}
                 }
-                	
                 grilo[i].acabou = true;
                 }
                 else 
